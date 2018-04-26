@@ -1,6 +1,31 @@
-start_angle = argument0
-end_angle = argument1
+curr_angle = round(argument0)
+dest_angle = round(argument1)
 
-//Make a recursive algorithm to calculate the shortest path around the circle for the angle
-//Result should be either the positive or negative path
-//This is probably the only way i can get turning to work how i want
+curr_angle = scr_simplify_angle(curr_angle)
+dest_angle = scr_simplify_angle(dest_angle)
+
+path = curr_angle
+len_pos = 0
+
+while path != dest_angle {
+    path += 1
+    len_pos += 1
+    path = scr_simplify_angle(path)
+}
+
+path = curr_angle
+len_neg = 0
+
+while path != dest_angle {
+    path -= 1
+    len_neg += 1
+    path = scr_simplify_angle(path)
+}
+
+if len_pos >= len_neg {
+    return 1
+}
+else {
+    return -1
+}
+

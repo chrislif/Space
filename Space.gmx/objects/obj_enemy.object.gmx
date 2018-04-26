@@ -44,6 +44,8 @@ enum state {
     aggro
 }
 e_state = state.patrol
+aggro_range = 350  
+break_range = 500
 
 dest = noone
 dest_num = 1
@@ -109,46 +111,82 @@ if e_state = state.patrol and has_route = false {
     self.dest = route[1]
 }
 
-//X Movement
-x_dir = sign(dest.x - x)
-x_spd += x_dir * acel
-if x_spd &gt;  max_spd {x_spd =  max_spd}
-if x_spd &lt; -max_spd {x_spd = -max_spd}
-self.x += x_spd
-
-//Y Movement
-y_dir = sign(dest.y - y) 
-y_spd += y_dir * acel
-if y_spd &gt;  max_spd {y_spd =  max_spd}
-if y_spd &lt; -max_spd {y_spd = -max_spd}
-self.y += y_spd
-
-dest_switch_range = 100 //Radius of destination
-
-//Check if in x range of route destination
-x_range = false
-if (dest.x - dest_switch_range &lt; x) and (x &lt; dest.x + dest_switch_range) {
-    x_range = true
+//Change state to aggro if player in range
+if e_state != state.aggro {
+    player = instance_nearest(self.x, self.y, obj_player)
+    if player != noone {
+        range = point_distance(self.x, self.y, player.x, player.y)
+        
+        if range &lt; aggro_range {
+            e_state = state.aggro
+            scr_destroy_route(route)
+            self.route = noone
+            self.has_route = false
+            self.dest = player
+        }
+    }
 }
 
-//Check if in y range of route destination
-y_range = false
-if (dest.y - dest_switch_range &lt; y) and (y &lt; dest.y + dest_switch_range) {
-    y_range = true
+//Movement Controls
+if dest != noone {
+    //X Movement
+    x_dir = sign(dest.x - x)
+    x_spd += x_dir * acel
+    if x_spd &gt;  max_spd {x_spd =  max_spd}
+    if x_spd &lt; -max_spd {x_spd = -max_spd}
+    self.x += x_spd
+    
+    //Y Movement
+    y_dir = sign(dest.y - y) 
+    y_spd += y_dir * acel
+    if y_spd &gt;  max_spd {y_spd =  max_spd}
+    if y_spd &lt; -max_spd {y_spd = -max_spd}
+    self.y += y_spd
+    
+    //Rotate to destination
+    dest_angle = point_direction(x, y, dest.x, dest.y) + 90
+    if image_angle != dest_angle {
+        angle_dir = scr_shortest_rotation(image_angle, dest_angle)
+        image_angle += angle_dir * turn_spd
+    }
 }
 
-image_angle = point_direction(x, y, dest.x, dest.y) - 90
-
-//Switch destination if in range
-if x_range and y_range {
-    if dest_num &lt; route[0] {
-        dest = route[dest_num + 1]
-        dest_num += 1   
-    }
-    else {
-        dest = route[1]
-        dest_num = 1
-    }
+switch e_state {
+    case state.patrol:
+        dest_switch_range = 100 //Radius of destination
+        
+        //Check if in x range of route destination
+        x_range = false
+        if (dest.x - dest_switch_range &lt; x) and (x &lt; dest.x + dest_switch_range) {
+            x_range = true
+        }
+        
+        //Check if in y range of route destination
+        y_range = false
+        if (dest.y - dest_switch_range &lt; y) and (y &lt; dest.y + dest_switch_range) {
+            y_range = true
+        }
+        
+        //Switch destination if in range
+        if x_range and y_range {
+            if dest_num &lt; route[0] {
+                dest = route[dest_num + 1]
+                dest_num += 1   
+            }
+            else {
+                dest = route[1]
+                dest_num = 1
+            }
+        }
+    break
+    case state.aggro:
+        if player != noone {
+            range = point_distance(self.x, self.y, player.x, player.y)
+            if range &gt; break_range {
+                e_state = state.patrol
+            }
+        }
+    break
 }
 
 //Kill if out of hp
@@ -189,8 +227,10 @@ if self.route != noone {
    
     draw_line_color(route[dest_num].x, route[dest_num].y, self.x, self.y, c_white, c_white)
 }
-*/
 
+draw_circle_color(self.x, self.y, 350, c_red, c_red, true)
+draw_circle_color(self.x, self.y, 500, c_green, c_green, true)
+draw_text(x, y - 32, string(e_state))
 </string>
           </argument>
         </arguments>

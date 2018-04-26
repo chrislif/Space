@@ -25,7 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>player = instance_create(room_width/2, room_height/2, obj_player)
+            <string>///Initialize Variables
+player = instance_create(room_width/2, room_height/2, obj_player)
+
+//Create Stars
+star_count = random_range(100, 300)
+for (i = 0; i &lt; star_count; i += 1) {
+    sx = random_range(32, room_width - 32)
+    sy = random_range(32, room_height - 32)
+    star = instance_create(sx, sy, obj_star)
+}
 
 </string>
           </argument>
@@ -53,6 +62,8 @@
     str = "Scrap: " + string(player.scrap_amnt)
     draw_text(16,16, str)
 }
+
+
 </string>
           </argument>
         </arguments>

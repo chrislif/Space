@@ -14,15 +14,20 @@
     <sprite>sprites\spr_turret_base</sprite>
     <sprite>sprites\spr_turret_gun</sprite>
     <sprite>sprites\dmg_player</sprite>
+    <sprite>sprites\anm_warp</sprite>
+    <sprite>sprites\spr_star</sprite>
+    <sprite>sprites\spr_temp</sprite>
   </sprites>
-  <backgrounds name="background">
-    <background>background\bk_space</background>
-  </backgrounds>
+  <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_create_route.gml</script>
-    <script>scripts\print.gml</script>
     <script>scripts\scr_shortest_rotation.gml</script>
+    <script>scripts\scr_simplify_angle.gml</script>
+    <script>scripts\scr_destroy_route.gml</script>
+    <scripts name="Functions">
+      <script>scripts\print.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
@@ -34,6 +39,8 @@
     <object>objects\obj_turret_gun</object>
     <object>objects\obj_point</object>
     <object>objects\obj_player_dmg</object>
+    <object>objects\vis_warp</object>
+    <object>objects\obj_star</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>

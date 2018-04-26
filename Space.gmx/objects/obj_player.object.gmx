@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize Variables
+
+//Welcome to AI'm
 dmg = 0
 dmg_max = 32
 
@@ -36,6 +38,9 @@ max_spd = 5
 reload = 10
 reload_time = 0
 scrap_amnt = 0
+jump_animate = false
+anim = noone
+warp = false
 
 dmg_bar = instance_create(x, y, obj_player_dmg)
 
@@ -64,30 +69,35 @@ dmg_bar = instance_create(x, y, obj_player_dmg)
             <string>///Player Controls
 self.image_angle = point_direction(self.x, self.y, mouse_x, mouse_y) - 90
 
-uk = keyboard_check(ord("W")) or keyboard_check(vk_up)
-lk = keyboard_check(ord("A")) or keyboard_check(vk_left)
-dk = keyboard_check(ord("S")) or keyboard_check(vk_down)
-rk = keyboard_check(ord("D")) or keyboard_check(vk_right)
+//Get Keyboard Input
+uk   = keyboard_check(ord("W")) or keyboard_check(vk_up)
+lk   = keyboard_check(ord("A")) or keyboard_check(vk_left)
+dk   = keyboard_check(ord("S")) or keyboard_check(vk_down)
+rk   = keyboard_check(ord("D")) or keyboard_check(vk_right)
+jump = keyboard_check_pressed(ord("J"))
+fire_main = mouse_check_button(mb_left)
 
+//Equalize Checks
 y_chk = dk - uk
 x_chk = rk - lk
 
+//Add accel to speed
 x_spd += x_chk * acel
 y_spd += y_chk * acel
 
+//Cap Max and Min speed
 if x_spd &gt;  max_spd {x_spd =  max_spd}
 if x_spd &lt; -max_spd {x_spd = -max_spd}
 if y_spd &gt;  max_spd {y_spd =  max_spd}
 if y_spd &lt; -max_spd {y_spd = -max_spd}
 
+//Move based on current speed
 self.x += x_spd
 self.y += y_spd
 
-fire_main = mouse_check_button(mb_left)
-
-spread = 1
-
+//Fire bullets
 if (fire_main and reload_time == 0) {
+    spread = 1
     bullet = instance_create(self.x, self.y, obj_blt)
     bullet.speed = 25
     bullet.direction = point_direction(self.x, self.y, mouse_x, mouse_y) + random_range(-spread, spread)
@@ -95,8 +105,22 @@ if (fire_main and reload_time == 0) {
     bullet.target = "enemy"
     reload_time = reload
 }
+
+//Reload cycle
 if reload_time &gt; 0 {
     reload_time -= 1
+}
+
+//Jump Code
+if jump and jump_animate = false{
+    jump_animate = true
+    anim = instance_create(self.x, self.y, vis_warp)
+    anim.image_angle = self.image_angle
+}
+
+if warp = true {
+
+    
 }
 
 //Move HP Bar
@@ -132,11 +156,14 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Debug Text
+            <string>///Animate Code
 draw_self()
+
+//Debug Code
 
 draw_set_color(c_white)
 
+/*
 p_str = string(self.x) + ", " + string(self.y)
 player_position = draw_text(self.x - 32, self.y - 32, p_str)
 
