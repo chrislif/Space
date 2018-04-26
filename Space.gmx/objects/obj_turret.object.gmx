@@ -111,6 +111,8 @@ if hp &lt; 1 {
             <kind>1</kind>
             <string>draw_self()
 
+/*
+
 draw_circle_color(self.x, self.y, 350, c_red, c_red, true)
 </string>
           </argument>

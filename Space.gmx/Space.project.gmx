@@ -14,9 +14,11 @@
     <sprite>sprites\spr_turret_base</sprite>
     <sprite>sprites\spr_turret_gun</sprite>
     <sprite>sprites\dmg_player</sprite>
-    <sprite>sprites\anm_warp</sprite>
     <sprite>sprites\spr_star</sprite>
     <sprite>sprites\spr_temp</sprite>
+    <sprites name="Animations">
+      <sprite>sprites\anm_warp</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -38,9 +40,11 @@
     <object>objects\obj_turret</object>
     <object>objects\obj_turret_gun</object>
     <object>objects\obj_point</object>
-    <object>objects\obj_player_dmg</object>
-    <object>objects\vis_warp</object>
     <object>objects\obj_star</object>
+    <objects name="Animations">
+      <object>objects\obj_anim_warp</object>
+      <object>objects\obj_player_dmg</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>

@@ -114,7 +114,7 @@ if reload_time &gt; 0 {
 //Jump Code
 if jump and jump_animate = false{
     jump_animate = true
-    anim = instance_create(self.x, self.y, vis_warp)
+    anim = instance_create(self.x, self.y, obj_anim_warp)
     anim.image_angle = self.image_angle
 }
 
@@ -132,6 +132,11 @@ if dmg &lt; dmg_max {
 }
 else {
     dmg_bar.image_index = -1
+}
+
+//Reset room on death
+if dmg &gt;= dmg_max {
+    room_restart()
 }
 
 </string>

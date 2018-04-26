@@ -31,24 +31,32 @@ scrap_value = random_range(1, 3)
 has_route = false
 route = noone
 
+player = noone
+
 spd = 1
 x_spd = 0
 y_spd = 0
 acel = .1
 max_spd = 4
 
-turn_spd = 5
+turn_spd = 2.5
 
 enum state {
     patrol, 
     aggro
 }
 e_state = state.patrol
-aggro_range = 350  
+aggro_range = 250  
 break_range = 500
 
 dest = noone
 dest_num = 1
+
+fire = false
+reload_tick = 0
+reload_time = 10
+
+room_center = instance_create(room_width/2, room_height/2, obj_point)
 
 // Test variables
 
@@ -103,6 +111,7 @@ dest_num = 1
           <argument>
             <kind>1</kind>
             <string>///Enemy controls
+player = instance_nearest(self.x, self.y, obj_player)
 
 //Get route if needed
 if e_state = state.patrol and has_route = false {
@@ -113,7 +122,6 @@ if e_state = state.patrol and has_route = false {
 
 //Change state to aggro if player in range
 if e_state != state.aggro {
-    player = instance_nearest(self.x, self.y, obj_player)
     if player != noone {
         range = point_distance(self.x, self.y, player.x, player.y)
         
@@ -149,6 +157,7 @@ if dest != noone {
         angle_dir = scr_shortest_rotation(image_angle, dest_angle)
         image_angle += angle_dir * turn_spd
     }
+    image_angle = scr_simplify_angle(image_angle)
 }
 
 switch e_state {
@@ -180,6 +189,7 @@ switch e_state {
         }
     break
     case state.aggro:
+        //Break Aggro if out of range
         if player != noone {
             range = point_distance(self.x, self.y, player.x, player.y)
             if range &gt; break_range {
@@ -187,6 +197,35 @@ switch e_state {
             }
         }
     break
+}
+
+//Shoot if lined up with player
+if player != noone {
+    player_angle = round(point_direction(self.x, self.y, player.x, player.y)) - 90
+    fire_arc = 10
+    if image_angle &gt;= player_angle - fire_arc and 
+       image_angle &lt;= player_angle + fire_arc and
+       e_state = state.aggro {
+        fire = true
+    }
+    else {
+        fire = false
+    }
+}
+//Shoot if allowed
+if fire == true and reload_tick == 0 {
+    spread = 1
+    bullet = instance_create(self.x, self.y, obj_blt)
+    bullet.speed = 10
+    bullet.direction = image_angle + random_range(-spread, spread) + 90
+    bullet.image_angle = bullet.direction - 90
+    bullet.target = "player"
+    reload_tick = reload_time
+}
+
+if reload_tick &gt; 0 {
+    
+    reload_tick -= 1
 }
 
 //Kill if out of hp
@@ -230,7 +269,16 @@ if self.route != noone {
 
 draw_circle_color(self.x, self.y, 350, c_red, c_red, true)
 draw_circle_color(self.x, self.y, 500, c_green, c_green, true)
+
 draw_text(x, y - 32, string(e_state))
+
+
+if player != noone {
+    draw_text(x, y - 48, ("Player: " + string(point_direction(self.x, self.y, player.x, player.y))))
+    draw_text(x, y + 48, ("Angle:  " + string(image_angle)))
+    draw_text(x + 48, y, ("FIRE: " + string(fire)))
+}
+
 </string>
           </argument>
         </arguments>
