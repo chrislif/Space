@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -26,22 +26,40 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize Variables
-
 //Welcome to AI'm
-dmg = 0
-dmg_max = 32
+manager = instance_nearest(0, 0, obj_manager)
 
+//KeyCheck Variables
+uk = 0
+lk = 0
+dk = 0
+rk = 0
+jump = 0
+fire_main = 0
+y_chk = 0
+x_chk = 0
+
+//Movement Variables
 x_spd = 0
 y_spd = 0
 acel = .5
 max_spd = 5
+
+//Weapon Variables
 reload = 10
 reload_time = 0
-scrap_amnt = 0
+
+//Animation Variables
 jump_animate = false
 anim = noone
-warp = false
+warp_complete = false
 
+//Misc Variables
+scrap_amnt = 0
+dmg = 0
+dmg_max = 32
+
+//Damage UI
 dmg_bar = instance_create(x, y, obj_player_dmg)
 
 </string>
@@ -67,15 +85,17 @@ dmg_bar = instance_create(x, y, obj_player_dmg)
           <argument>
             <kind>1</kind>
             <string>///Player Controls
-self.image_angle = point_direction(self.x, self.y, mouse_x, mouse_y) - 90
 
 //Get Keyboard Input
-uk   = keyboard_check(ord("W")) or keyboard_check(vk_up)
-lk   = keyboard_check(ord("A")) or keyboard_check(vk_left)
-dk   = keyboard_check(ord("S")) or keyboard_check(vk_down)
-rk   = keyboard_check(ord("D")) or keyboard_check(vk_right)
-jump = keyboard_check_pressed(ord("J"))
-fire_main = mouse_check_button(mb_left)
+if room = rm_arena {
+    self.image_angle = point_direction(self.x, self.y, mouse_x, mouse_y) - 90
+    uk   = keyboard_check(ord("W")) or keyboard_check(vk_up)
+    lk   = keyboard_check(ord("A")) or keyboard_check(vk_left)
+    dk   = keyboard_check(ord("S")) or keyboard_check(vk_down)
+    rk   = keyboard_check(ord("D")) or keyboard_check(vk_right)
+    jump = keyboard_check_pressed(ord("J"))
+    fire_main = mouse_check_button(mb_left)
+}
 
 //Equalize Checks
 y_chk = dk - uk
@@ -112,15 +132,25 @@ if reload_time &gt; 0 {
 }
 
 //Jump Code
-if jump and jump_animate = false{
+if jump and jump_animate = false {
+    jump = 0
     jump_animate = true
-    anim = instance_create(self.x, self.y, obj_anim_warp)
+    anim = instance_create(self.x, self.y, obj_anm_warp)
     anim.image_angle = self.image_angle
 }
 
-if warp = true {
-
-    
+//Warp Complete Code
+if warp_complete = true {
+    warp_complete = false
+    if room != rm_warp {   
+        room_goto(rm_warp)
+    }
+    self.x = room_width/2
+    self.y = room_height/2
+    if manager != noone {
+        manager.warping = true
+    }
+    print("JUMP")
 }
 
 //Move HP Bar

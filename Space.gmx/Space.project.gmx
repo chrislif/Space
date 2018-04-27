@@ -6,19 +6,24 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprites name="Animations">
+      <sprite>sprites\anm_warp_burst</sprite>
+      <sprite>sprites\anm_warp</sprite>
+    </sprites>
+    <sprites name="Points">
+      <sprite>sprites\spr_point</sprite>
+      <sprite>sprites\spr_grav_particle</sprite>
+      <sprite>sprites\spr_star</sprite>
+    </sprites>
     <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\spr_blt</sprite>
-    <sprite>sprites\spr_blt2</sprite>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_scrap</sprite>
+    <sprite>sprites\spr_blt2</sprite>
+    <sprite>sprites\spr_blt</sprite>
     <sprite>sprites\spr_turret_base</sprite>
     <sprite>sprites\spr_turret_gun</sprite>
     <sprite>sprites\dmg_player</sprite>
-    <sprite>sprites\spr_star</sprite>
-    <sprite>sprites\spr_temp</sprite>
-    <sprites name="Animations">
-      <sprite>sprites\anm_warp</sprite>
-    </sprites>
+    <sprite>sprites\spr_graviton</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -32,6 +37,16 @@
     </scripts>
   </scripts>
   <objects name="objects">
+    <objects name="Animations">
+      <object>objects\obj_anm_warp</object>
+      <object>objects\obj_player_dmg</object>
+      <object>objects\obj_anm_warp_burst</object>
+    </objects>
+    <objects name="Particles">
+      <object>objects\obj_star</object>
+      <object>objects\obj_grav_particle</object>
+      <object>objects\obj_point</object>
+    </objects>
     <object>objects\obj_player</object>
     <object>objects\obj_blt</object>
     <object>objects\obj_enemy</object>
@@ -39,15 +54,11 @@
     <object>objects\obj_manager</object>
     <object>objects\obj_turret</object>
     <object>objects\obj_turret_gun</object>
-    <object>objects\obj_point</object>
-    <object>objects\obj_star</object>
-    <objects name="Animations">
-      <object>objects\obj_anim_warp</object>
-      <object>objects\obj_player_dmg</object>
-    </objects>
+    <object>objects\obj_graviton</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_main</room>
+    <room>rooms\rm_warp</room>
+    <room>rooms\rm_arena</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
