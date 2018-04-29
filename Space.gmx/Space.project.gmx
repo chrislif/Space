@@ -10,10 +10,17 @@
       <sprite>sprites\anm_warp_burst</sprite>
       <sprite>sprites\anm_warp</sprite>
     </sprites>
+    <sprites name="Buttons">
+      <sprite>sprites\btn_map</sprite>
+    </sprites>
     <sprites name="Points">
       <sprite>sprites\spr_point</sprite>
       <sprite>sprites\spr_grav_particle</sprite>
       <sprite>sprites\spr_star</sprite>
+    </sprites>
+    <sprites name="UI">
+      <sprite>sprites\spr_ui_map</sprite>
+      <sprite>sprites\spri_ui_exit</sprite>
     </sprites>
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_enemy</sprite>
@@ -32,26 +39,35 @@
     <script>scripts\scr_shortest_rotation.gml</script>
     <script>scripts\scr_simplify_angle.gml</script>
     <script>scripts\scr_destroy_route.gml</script>
+    <script>scripts\scr_btn.gml</script>
     <scripts name="Functions">
       <script>scripts\print.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
+    <object>objects\obj_manager</object>
     <objects name="Animations">
       <object>objects\obj_anm_warp</object>
       <object>objects\obj_player_dmg</object>
       <object>objects\obj_anm_warp_burst</object>
+    </objects>
+    <objects name="Buttons">
+      <object>objects\obj_btn</object>
+      <object>objects\obj_btn_map</object>
     </objects>
     <objects name="Particles">
       <object>objects\obj_star</object>
       <object>objects\obj_grav_particle</object>
       <object>objects\obj_point</object>
     </objects>
+    <objects name="UI">
+      <object>objects\obj_ui_map</object>
+      <object>objects\obj_ui_close</object>
+    </objects>
     <object>objects\obj_player</object>
     <object>objects\obj_blt</object>
     <object>objects\obj_enemy</object>
     <object>objects\obj_scrap</object>
-    <object>objects\obj_manager</object>
     <object>objects\obj_turret</object>
     <object>objects\obj_turret_gun</object>
     <object>objects\obj_graviton</object>

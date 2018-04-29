@@ -112,6 +112,7 @@ if cycle == 3 {
     instance_destroy()
     burst = instance_create(x, y, obj_anm_warp_burst)
     burst.player = player
+    player.warp_complete = true
 }
 </string>
           </argument>

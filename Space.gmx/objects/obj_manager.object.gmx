@@ -32,6 +32,8 @@ player = noone
 warping = false
 stars_created = false
 cycle = 0
+
+warp_ui_created = false
 </string>
           </argument>
         </arguments>
@@ -58,6 +60,7 @@ cycle = 0
 if player != noone {
     player.jump = 1
 }
+
 </string>
           </argument>
         </arguments>
@@ -115,6 +118,11 @@ alarm_set(1, 60)
     }
     stars_created = true
     print("SPAWN STARS | " + string(stars_created))
+}
+
+if warping == true and warp_ui_created == false{
+    map_btn = instance_create(room_width/2, 96, obj_btn_map)
+    warp_ui_created = true
 }
 
 if cycle == 0 and warping = true {
