@@ -34,6 +34,9 @@ stars_created = false
 cycle = 0
 
 warp_ui_created = false
+
+global.star_map = scr_create_starmap()
+print("star_map: " + string(global.star_map))
 </string>
           </argument>
         </arguments>

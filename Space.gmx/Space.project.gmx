@@ -21,6 +21,7 @@
     <sprites name="UI">
       <sprite>sprites\spr_ui_map</sprite>
       <sprite>sprites\spri_ui_exit</sprite>
+      <sprite>sprites\spr_ui_map_star</sprite>
     </sprites>
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_enemy</sprite>
@@ -35,14 +36,17 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="Functions">
+      <script>scripts\print.gml</script>
+      <script>scripts\random_sign.gml</script>
+      <script>scripts\random_round.gml</script>
+    </scripts>
     <script>scripts\scr_create_route.gml</script>
     <script>scripts\scr_shortest_rotation.gml</script>
     <script>scripts\scr_simplify_angle.gml</script>
     <script>scripts\scr_destroy_route.gml</script>
     <script>scripts\scr_btn.gml</script>
-    <scripts name="Functions">
-      <script>scripts\print.gml</script>
-    </scripts>
+    <script>scripts\scr_create_starmap.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_manager</object>
@@ -63,6 +67,7 @@
     <objects name="UI">
       <object>objects\obj_ui_map</object>
       <object>objects\obj_ui_close</object>
+      <object>objects\obj_ui_map_star</object>
     </objects>
     <object>objects\obj_player</object>
     <object>objects\obj_blt</object>
