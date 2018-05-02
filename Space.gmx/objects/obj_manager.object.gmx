@@ -36,7 +36,6 @@ cycle = 0
 warp_ui_created = false
 
 global.star_map = scr_create_starmap()
-print("star_map: " + string(global.star_map))
 </string>
           </argument>
         </arguments>
@@ -88,7 +87,6 @@ if player != noone {
             <kind>1</kind>
             <string>alarm_set(0, -1)
 player = instance_create(room_width/2, room_height/2, obj_player)
-print("CREATE PLAYER | " + string(player))
 alarm_set(1, 60)
 </string>
           </argument>

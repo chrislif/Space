@@ -1,4 +1,3 @@
-star_map[0] = 0
 randomize()
 
 star_count = random_round(24, 36)
@@ -9,8 +8,8 @@ star_y = 0
 x_border = 450
 y_border = 320
 
-min_range = 64
-max_range = 128
+min_range = 100
+max_range = 150
 
 recalc_range = 16
 max_recalc = 16
@@ -53,19 +52,15 @@ for (i = 0; i < star_count; i += 1) {
         if nearest_star != noone {
             if final_x - nearest_star.x < recalc_range and
                final_y - nearest_star.y < recalc_range {
-                print("RECALC STAR | " + string(i))
                 if recalc_counter < max_recalc {
                     recalc_counter += 1
                 } else {
-                    print("MAX RECALC REACHED | " + string(i))
                     valid = true
                 }
             } else {
-                print("VALID STAR | " + string(i))
                 valid = true
             }
         } else {
-            print("VALID STAR | " + string(i))
             valid = true
         }
     }
@@ -74,5 +69,7 @@ for (i = 0; i < star_count; i += 1) {
     star.number = i
     star_map[i] = star
 }
+
+scr_connect_stars(star_map)
 
 return(star_map)

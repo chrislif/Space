@@ -150,7 +150,6 @@ if warp_complete = true {
     if manager != noone {
         manager.warping = true
     }
-    print("JUMP")
 }
 
 //Move HP Bar
