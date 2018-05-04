@@ -100,6 +100,5 @@ while group_count > 1 {
     group_map = scr_group_star_map(star_map)
     group_coordinates = ds_map_create()
     group_count = ds_map_size(group_map)
-    print("NUMBER OF GROUPS: " + string(ds_map_size(group_map)))
 }
 

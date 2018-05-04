@@ -59,7 +59,6 @@ for (i = 0; i < star_count; i += 1) {
                     recalc_counter += 1
                 } else {
                     valid = true
-                    print("MAXIMUM RECALC")
                 }
             } else {
                 valid = true

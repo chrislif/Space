@@ -130,7 +130,6 @@ alarm_set(1, 60)
         star.manager = self
     }
     stars_created = true
-    print("SPAWN STARS | " + string(stars_created))
 }
 
 if warping == true and warp_ui_created == false {
@@ -145,10 +144,6 @@ if cycle == 0 and warping = true {
     graviton.player = self.player
     graviton.manager = self
     cycle = 10
-    player.x = room_width/2
-    player.y = room_height/2
-    player.x_spd = 0
-    player.y_spd = 0
 }
 
 if cycle &gt; 0 {

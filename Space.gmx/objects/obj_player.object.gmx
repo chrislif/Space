@@ -187,6 +187,16 @@ if warping = true {
     }
 }
 
+// Keep still in warp
+if room = rm_warp {
+    x = room_width/2
+    y = room_height/2
+    x_spd = 0
+    y_spd = 0
+    dmg_bar.x = x
+    dmg_bar.y = y
+}
+
 // Warp Complete Code
 if warp_complete = true {
     warp_complete = false
