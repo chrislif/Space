@@ -5,6 +5,9 @@ star_count = random_round(24, 36)
 star_x = 0
 star_y = 0
 
+rm_width = 1024
+rm_height = 768
+
 x_border = 450
 y_border = 320
 
@@ -44,8 +47,8 @@ for (i = 0; i < star_count; i += 1) {
             star_y = -y_border + y_diff
         }
         
-        final_x = room_width/2 + star_x
-        final_y = room_height/2 + star_y
+        final_x = rm_width/2 + star_x
+        final_y = rm_height/2 + star_y
         
         nearest_star = instance_nearest(final_x, final_y, obj_ui_map_star)
         

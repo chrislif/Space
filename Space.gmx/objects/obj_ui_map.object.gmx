@@ -3,7 +3,7 @@
   <spriteName>spr_ui_map</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-2</depth>
+  <depth>-3</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,12 +27,10 @@
             <kind>1</kind>
             <string>close_btn = instance_create(x + sprite_width/2 - 12, y - sprite_height/2 + 12, obj_ui_close)
 close_btn.linked = self
+manager = noone
+show_star_map = false
+showing_star_map = false
 
-if global.star_map != noone {
-    for (i = 0; i &lt; array_length_1d(global.star_map); i += 1) {
-        global.star_map[i].show = true
-    }
-}
 </string>
           </argument>
         </arguments>
@@ -59,6 +57,37 @@ if global.star_map != noone {
     for (i = 0; i &lt; array_length_1d(global.star_map); i += 1) {
         global.star_map[i].show = false
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if show_star_map = true and showing_star_map = false {
+    if global.star_map != noone {
+        for (i = 0; i &lt; array_length_1d(global.star_map); i += 1) {
+            global.star_map[i].show = true
+            global.star_map[i].manager = manager    
+        }
+    }
+    showing_star_map = true
 }
 </string>
           </argument>

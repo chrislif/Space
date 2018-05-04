@@ -26,16 +26,26 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize Variables
-alarm_set(0, 120)
-
 player = noone
+
+if room = rm_warp {
+    alarm_set(0, 120)
+} 
+else {
+    player = instance_create(room_width/2, room_height/2, obj_player)
+    player.manager = self
+}
+
 warping = false
 stars_created = false
 cycle = 0
-
 warp_ui_created = false
 
 global.star_map = scr_create_starmap()
+
+selected_star = noone
+dewarp = false
+
 </string>
           </argument>
         </arguments>
@@ -87,6 +97,7 @@ if player != noone {
             <kind>1</kind>
             <string>alarm_set(0, -1)
 player = instance_create(room_width/2, room_height/2, obj_player)
+player.manager = self
 alarm_set(1, 60)
 </string>
           </argument>
@@ -116,20 +127,28 @@ alarm_set(1, 60)
         sx = random_range(32, room_width - 32)
         sy = random_range(32, room_height - 32)
         star = instance_create(sx, sy, obj_star)
+        star.manager = self
     }
     stars_created = true
     print("SPAWN STARS | " + string(stars_created))
 }
 
-if warping == true and warp_ui_created == false{
+if warping == true and warp_ui_created == false {
     map_btn = instance_create(room_width/2, 96, obj_btn_map)
+    map_btn.manager = self
+    
     warp_ui_created = true
 }
 
 if cycle == 0 and warping = true {
     graviton = instance_create(random_range(0, room_width - 0), 0, obj_graviton)
     graviton.player = self.player
+    graviton.manager = self
     cycle = 10
+    player.x = room_width/2
+    player.y = room_height/2
+    player.x_spd = 0
+    player.y_spd = 0
 }
 
 if cycle &gt; 0 {

@@ -3,8 +3,8 @@
   <spriteName>spr_ui_map_star</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-3</depth>
-  <persistent>0</persistent>
+  <depth>-4</depth>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -29,6 +29,7 @@
 number = 0
 connections = noone
 mouse_over = false
+selected = false
 
 </string>
           </argument>
@@ -81,6 +82,35 @@ mouse_over = false
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>selected = true
+
+if manager.selected_star != noone {
+    manager.selected_star.selected = false
+}
+manager.selected_star = self
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -107,6 +137,10 @@ mouse_over = false
             draw_line_colour(self.x, self.y, connections[i].x, connections[i].y, c_white, c_white)
         }
         draw_circle(x, y, 10, c_white)
+    }
+    
+    if selected = true {
+        draw_circle_colour(x, y, 10, c_blue, c_blue, true)
     }
 }
 </string>

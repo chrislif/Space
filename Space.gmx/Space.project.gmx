@@ -85,8 +85,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_warp</room>
     <room>rooms\rm_arena</room>
+    <room>rooms\rm_warp</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

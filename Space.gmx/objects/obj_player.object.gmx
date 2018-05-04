@@ -3,7 +3,7 @@
   <spriteName>spr_player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,10 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize Variables
-//Welcome to AI'm
-manager = instance_nearest(0, 0, obj_manager)
-
-//KeyCheck Variables
+// Welcome to AI'm
+// KeyCheck Variables
 uk = 0
 lk = 0
 dk = 0
@@ -39,29 +37,53 @@ fire_main = 0
 y_chk = 0
 x_chk = 0
 
-//Movement Variables
+// Movement Variables
 x_spd = 0
 y_spd = 0
 acel = .5
 max_spd = 5
 
-//Weapon Variables
+// Weapon Variables
 reload = 10
 reload_time = 0
 
-//Animation Variables
+// Animation Variables
 jump_animate = false
 anim = noone
 warp_complete = false
+warping = false
 
-//Misc Variables
+// Misc Variables
 scrap_amnt = 0
 dmg = 0
 dmg_max = 32
 
-//Damage UI
+// Damage UI
 dmg_bar = instance_create(x, y, obj_player_dmg)
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_destroy(dmg_bar)
 </string>
           </argument>
         </arguments>
@@ -84,38 +106,39 @@ dmg_bar = instance_create(x, y, obj_player_dmg)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Player Controls
-
-//Get Keyboard Input
+            <string>/// Player Controls
+// Get Keyboard Input
 if room = rm_arena {
-    self.image_angle = point_direction(self.x, self.y, mouse_x, mouse_y) - 90
     uk   = keyboard_check(ord("W")) or keyboard_check(vk_up)
     lk   = keyboard_check(ord("A")) or keyboard_check(vk_left)
     dk   = keyboard_check(ord("S")) or keyboard_check(vk_down)
     rk   = keyboard_check(ord("D")) or keyboard_check(vk_right)
     jump = keyboard_check_pressed(ord("J"))
-    fire_main = mouse_check_button(mb_left)
+    if warping = false {
+        fire_main = mouse_check_button(mb_left)
+        self.image_angle = point_direction(self.x, self.y, mouse_x, mouse_y) - 90
+    }
 }
 
-//Equalize Checks
+// Equalize Checks
 y_chk = dk - uk
 x_chk = rk - lk
 
-//Add accel to speed
+// Add accel to speed
 x_spd += x_chk * acel
 y_spd += y_chk * acel
 
-//Cap Max and Min speed
+// Cap Max and Min speed
 if x_spd &gt;  max_spd {x_spd =  max_spd}
 if x_spd &lt; -max_spd {x_spd = -max_spd}
 if y_spd &gt;  max_spd {y_spd =  max_spd}
 if y_spd &lt; -max_spd {y_spd = -max_spd}
 
-//Move based on current speed
+// Move based on current speed
 self.x += x_spd
 self.y += y_spd
 
-//Fire bullets
+// Fire bullets
 if (fire_main and reload_time == 0) {
     spread = 1
     bullet = instance_create(self.x, self.y, obj_blt)
@@ -126,33 +149,21 @@ if (fire_main and reload_time == 0) {
     reload_time = reload
 }
 
-//Reload cycle
+// Reload cycle
 if reload_time &gt; 0 {
     reload_time -= 1
 }
 
-//Jump Code
+// Jump Code
 if jump and jump_animate = false {
+    warping = true
     jump = 0
     jump_animate = true
     anim = instance_create(self.x, self.y, obj_anm_warp)
     anim.image_angle = self.image_angle
 }
 
-//Warp Complete Code
-if warp_complete = true {
-    warp_complete = false
-    if room != rm_warp {   
-        room_goto(rm_warp)
-    }
-    self.x = room_width/2
-    self.y = room_height/2
-    if manager != noone {
-        manager.warping = true
-    }
-}
-
-//Move HP Bar
+// Move HP Bar
 dmg_bar.x = x
 dmg_bar.y = y
 dmg_bar.image_angle = image_angle   
@@ -163,7 +174,31 @@ else {
     dmg_bar.image_index = -1
 }
 
-//Reset room on death
+// Warping Code
+if warping = true {
+    angle_dir = scr_shortest_rotation(0, image_angle)
+    angle_diff = abs(angle_difference(0, image_angle))
+    turn_spd = 5
+    if angle_diff &gt; turn_spd  {
+        image_angle += angle_dir * turn_spd
+    }
+    if angle_diff &lt; turn_spd and angle_diff != 0 {
+        image_angle += angle_dir * angle_diff
+    }
+}
+
+// Warp Complete Code
+if warp_complete = true {
+    warp_complete = false
+    if room != rm_warp {   
+        room_goto(rm_warp)
+    }
+    if manager != noone {
+        manager.warping = true
+    }
+}
+
+// Reset room on death
 if dmg &gt;= dmg_max {
     room_restart()
 }
