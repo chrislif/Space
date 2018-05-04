@@ -44,12 +44,16 @@
       <script>scripts\in_array.gml</script>
     </scripts>
     <script>scripts\scr_btn.gml</script>
-    <script>scripts\scr_connect_stars.gml</script>
     <script>scripts\scr_create_route.gml</script>
-    <script>scripts\scr_create_starmap.gml</script>
     <script>scripts\scr_destroy_route.gml</script>
     <script>scripts\scr_shortest_rotation.gml</script>
     <script>scripts\scr_simplify_angle.gml</script>
+    <scripts name="Star Map">
+      <script>scripts\scr_connect_stars.gml</script>
+      <script>scripts\scr_create_starmap.gml</script>
+      <script>scripts\scr_group_star_map.gml</script>
+      <script>scripts\scr_connect_group.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="Animations">
