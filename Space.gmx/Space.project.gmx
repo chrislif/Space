@@ -12,6 +12,7 @@
     </sprites>
     <sprites name="Buttons">
       <sprite>sprites\btn_map</sprite>
+      <sprite>sprites\btn_jump</sprite>
     </sprites>
     <sprite>sprites\dmg_player</sprite>
     <sprites name="Points">
@@ -31,6 +32,7 @@
       <sprite>sprites\spr_ui_map</sprite>
       <sprite>sprites\spri_ui_exit</sprite>
       <sprite>sprites\spr_ui_map_star</sprite>
+      <sprite>sprites\spr_ui_map_player</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -46,6 +48,7 @@
     <script>scripts\scr_btn.gml</script>
     <script>scripts\scr_create_route.gml</script>
     <script>scripts\scr_destroy_route.gml</script>
+    <script>scripts\scr_load_star_arena.gml</script>
     <script>scripts\scr_shortest_rotation.gml</script>
     <script>scripts\scr_simplify_angle.gml</script>
     <scripts name="Star Map">
@@ -64,6 +67,7 @@
     <objects name="Buttons">
       <object>objects\obj_btn</object>
       <object>objects\obj_btn_map</object>
+      <object>objects\obj_btn_jump</object>
     </objects>
     <object>objects\obj_blt</object>
     <object>objects\obj_enemy</object>
@@ -82,6 +86,7 @@
       <object>objects\obj_ui_close</object>
       <object>objects\obj_ui_map</object>
       <object>objects\obj_ui_map_star</object>
+      <object>objects\obj_ui_map_player</object>
     </objects>
   </objects>
   <rooms name="rooms">

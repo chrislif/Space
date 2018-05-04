@@ -99,12 +99,21 @@ selected = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>selected = true
-
-if manager.selected_star != noone {
+            <string>if manager.selected_star != noone {
     manager.selected_star.selected = false
 }
-manager.selected_star = self
+
+if manager.current_location == noone {
+    manager.selected_star = self
+    selected = true
+}
+else {
+    star_connected = in_array(manager.current_location.connections, self)
+    if  star_connected {
+        manager.selected_star = self
+        selected = true
+    }
+}
 
 </string>
           </argument>
@@ -131,12 +140,26 @@ manager.selected_star = self
             <string>if show = true {
     draw_self()
     
-    if mouse_over = true {
+    if mouse_over = true and manager.current_location != self{
         
         for(i = 0; i &lt; array_length_1d(connections); i += 1) {
             draw_line_colour(self.x, self.y, connections[i].x, connections[i].y, c_white, c_white)
         }
-        draw_circle(x, y, 10, c_white)
+        
+        if manager.current_location != noone {
+            if in_array(manager.current_location.connections, self) {
+                draw_circle_colour(self.x, self.y, 10, c_white, c_white, true)
+            }
+        } 
+        else {
+            draw_circle_colour(self.x, self.y, 10, c_white, c_white, true)
+        }
+    }
+    
+    if manager.current_location == self {
+        for(i = 0; i &lt; array_length_1d(connections); i += 1) {
+            draw_line_colour(self.x, self.y, connections[i].x, connections[i].y, c_white, c_white)
+        }
     }
     
     if selected = true {

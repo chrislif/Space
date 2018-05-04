@@ -43,8 +43,14 @@ warp_ui_created = false
 
 global.star_map = scr_create_starmap()
 
+current_location = noone
 selected_star = noone
-dewarp = false
+
+map_btn = instance_create(room_width/2, 96, obj_btn_map)
+map_btn.manager = self
+
+warp_btn = instance_create(room_width * 3/4, 96, obj_btn_jump)
+warp_btn.manager = self
 
 </string>
           </argument>
@@ -121,7 +127,8 @@ alarm_set(1, 60)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if stars_created = false and room == rm_arena {
+            <string>/// Manage Game
+if stars_created = false and room == rm_arena {
     star_count = random_range(100, 300)
     for (i = 0; i &lt; star_count; i += 1) {
         sx = random_range(32, room_width - 32)
@@ -133,10 +140,15 @@ alarm_set(1, 60)
 }
 
 if warping == true and warp_ui_created == false {
-    map_btn = instance_create(room_width/2, 96, obj_btn_map)
-    map_btn.manager = self
-    
+    map_btn.show = true
     warp_ui_created = true
+}
+
+if selected_star != noone {
+    warp_btn.show = true
+} 
+else {
+    warp_btn.show = false
 }
 
 if cycle == 0 and warping = true {

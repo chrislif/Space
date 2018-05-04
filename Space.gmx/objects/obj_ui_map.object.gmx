@@ -28,9 +28,11 @@
             <string>close_btn = instance_create(x + sprite_width/2 - 12, y - sprite_height/2 + 12, obj_ui_close)
 close_btn.linked = self
 manager = noone
+
 show_star_map = false
 showing_star_map = false
 
+loc_marker = noone
 </string>
           </argument>
         </arguments>
@@ -57,7 +59,11 @@ showing_star_map = false
     for (i = 0; i &lt; array_length_1d(global.star_map); i += 1) {
         global.star_map[i].show = false
     }
+    if loc_marker != noone {
+        loc_marker.show = false
+    }
 }
+
 </string>
           </argument>
         </arguments>
@@ -84,11 +90,17 @@ showing_star_map = false
     if global.star_map != noone {
         for (i = 0; i &lt; array_length_1d(global.star_map); i += 1) {
             global.star_map[i].show = true
-            global.star_map[i].manager = manager    
+            global.star_map[i].manager = manager  
         }
+    }
+    
+    if manager.current_location != noone {
+        loc_marker = instance_create(manager.current_location.x, manager.current_location.y, obj_ui_map_player)
+        loc_marker.show = true
     }
     showing_star_map = true
 }
+
 </string>
           </argument>
         </arguments>
