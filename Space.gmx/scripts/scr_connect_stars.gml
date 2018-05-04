@@ -1,6 +1,6 @@
 //Variables
 star_map = argument0
-check_distance = 125
+check_distance = 100     // The range for area connections
 
 //Border Locations: 
 map_height = 668

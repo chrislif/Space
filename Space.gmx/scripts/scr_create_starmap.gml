@@ -8,11 +8,11 @@ star_y = 0
 x_border = 450
 y_border = 320
 
-min_range = 100
-max_range = 150
+min_range = 75  // Minimum displacement of stars
+max_range = 150 // Maximum displacement of stars
 
-recalc_range = 16
-max_recalc = 16
+recalc_range = 50   // Minimum range of stars next to each other
+max_recalc = 32
 
 for (i = 0; i < star_count; i += 1) {
     final_x = 0
@@ -56,6 +56,7 @@ for (i = 0; i < star_count; i += 1) {
                     recalc_counter += 1
                 } else {
                     valid = true
+                    print("MAXIMUM RECALC")
                 }
             } else {
                 valid = true

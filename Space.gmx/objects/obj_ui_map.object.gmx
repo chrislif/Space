@@ -84,10 +84,6 @@ if global.star_map != noone {
             <kind>1</kind>
             <string>draw_self()
 
-m_str = string(mouse_x) + ", " + string(mouse_y)
-mouse_position = draw_text(mouse_x, mouse_y - 32, m_str)
-
-
 </string>
           </argument>
         </arguments>

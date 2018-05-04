@@ -102,13 +102,9 @@ mouse_over = false
     draw_self()
     
     if mouse_over = true {
-        draw_text(x, y - 16, string(number))
         
         for(i = 0; i &lt; array_length_1d(connections); i += 1) {
             draw_line_colour(self.x, self.y, connections[i].x, connections[i].y, c_white, c_white)
-            draw_text(connections[i].x, 
-                      connections[i].y - 16, 
-                      string(connections[i].number))
         }
         draw_circle(x, y, 10, c_white)
     }
