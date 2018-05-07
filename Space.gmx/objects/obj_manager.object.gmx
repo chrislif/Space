@@ -43,6 +43,8 @@ warp_ui_created = false
 
 global.star_map = scr_create_starmap()
 
+star_map[0].threat_level = 5
+
 current_location = noone
 selected_star = noone
 

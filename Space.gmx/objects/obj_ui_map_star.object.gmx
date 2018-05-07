@@ -27,10 +27,48 @@
             <kind>1</kind>
             <string>show = false
 number = 0
+
 connections = noone
 mouse_over = false
 selected = false
+image_speed = 0
 
+threat_level = round(random_range(1, 5))
+threat_ui = instance_create(x, y, obj_threat_warning)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if threat_level &lt; 3 {
+    image_index = 0
+} 
+if threat_level &gt;= 3 {
+    image_index = 1
+}
+if threat_level &gt;= 5 and show = true and manager.current_location != self {
+    threat_ui.show = true
+}
+else {
+    threat_ui.show = false
+}
 </string>
           </argument>
         </arguments>

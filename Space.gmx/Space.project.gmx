@@ -33,6 +33,7 @@
       <sprite>sprites\spri_ui_exit</sprite>
       <sprite>sprites\spr_ui_map_star</sprite>
       <sprite>sprites\spr_ui_map_player</sprite>
+      <sprite>sprites\spr_threat_warning</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -87,6 +88,7 @@
       <object>objects\obj_ui_map</object>
       <object>objects\obj_ui_map_star</object>
       <object>objects\obj_ui_map_player</object>
+      <object>objects\obj_threat_warning</object>
     </objects>
   </objects>
   <rooms name="rooms">
