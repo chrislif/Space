@@ -154,7 +154,7 @@ if warping == true and warp_ui_created == false {
 }
 
 // Only show ship button if there is scrap to spend
-if player != noone {   
+if player != noone and room = rm_warp{   
     if player.scrap_amnt &gt; 0 {
         ship_btn.show = true
     }

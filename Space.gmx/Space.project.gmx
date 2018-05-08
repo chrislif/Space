@@ -77,6 +77,7 @@
       <object>objects\obj_btn_jump</object>
       <object>objects\obj_btn_map</object>
       <object>objects\obj_btn_ship</object>
+      <object>objects\obj_ui_close</object>
     </objects>
     <objects name="Managers">
       <object>objects\obj_manager</object>
@@ -91,10 +92,10 @@
     </objects>
     <objects name="UI">
       <object>objects\obj_threat_warning</object>
-      <object>objects\obj_ui_close</object>
       <object>objects\obj_ui_map</object>
       <object>objects\obj_ui_map_player</object>
       <object>objects\obj_ui_map_star</object>
+      <object>objects\obj_ui_ship</object>
     </objects>
     <objects name="Units">
       <object>objects\obj_enemy</object>
