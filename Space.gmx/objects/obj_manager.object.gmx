@@ -25,13 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize Variables
+            <string>/// Initialize Variables
 window_set_fullscreen(true)
 
 player = noone
 
 if room = rm_warp {
-    alarm_set(0, 120)
+    alarm_set(0, 120)   // Special start up animation
 } 
 else {
     player = instance_create(room_width/2, room_height/2, obj_player)
@@ -49,11 +49,14 @@ global.star_map = scr_create_starmap()
 current_location = noone
 selected_star = noone
 
-map_btn = instance_create(room_width/2, 96, obj_btn_map)
+map_btn = instance_create (room_width/2,     room_height/8, obj_btn_map)
 map_btn.manager = self
 
-warp_btn = instance_create(room_width * 3/4, 96, obj_btn_jump)
+warp_btn = instance_create(room_width * 3/4, room_height/8, obj_btn_jump)
 warp_btn.manager = self
+
+ship_btn = instance_create(room_width/4,     room_height/8, obj_btn_ship)
+ship_btn.manager = self
 
 </string>
           </argument>
@@ -131,6 +134,8 @@ alarm_set(1, 60)
           <argument>
             <kind>1</kind>
             <string>/// Manage Game
+
+// Create stars for the arena
 if stars_created = false and room == rm_arena {
     star_count = random_range(100, 300)
     for (i = 0; i &lt; star_count; i += 1) {
@@ -142,11 +147,23 @@ if stars_created = false and room == rm_arena {
     stars_created = true
 }
 
+// Create the warp ui for the first time
 if warping == true and warp_ui_created == false {
     map_btn.show = true
     warp_ui_created = true
 }
 
+// Only show ship button if there is scrap to spend
+if player != noone {   
+    if player.scrap_amnt &gt; 0 {
+        ship_btn.show = true
+    }
+    else {
+        ship_btn.show = false
+    }
+}
+
+// Only show warp button if there is a valid selection to warp to
 if selected_star != noone {
     warp_btn.show = true
 } 
@@ -154,6 +171,7 @@ else {
     warp_btn.show = false
 }
 
+// Spawn graviton particles
 if cycle == 0 and warping = true {
     graviton = instance_create(random_range(0, room_width - 0), 0, obj_graviton)
     graviton.player = self.player
@@ -161,13 +179,16 @@ if cycle == 0 and warping = true {
     cycle = 10
 }
 
+// Move graviton cycle
 if cycle &gt; 0 {
     cycle -= 1
 }
 
+// End game on esc press
 if keyboard_check_pressed(vk_escape) {
     game_end()
 }
+
 </string>
           </argument>
         </arguments>

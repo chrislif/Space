@@ -16,6 +16,7 @@
     <sprites name="Buttons">
       <sprite>sprites\btn_jump</sprite>
       <sprite>sprites\btn_map</sprite>
+      <sprite>sprites\btn_ship</sprite>
     </sprites>
     <sprites name="Particles">
       <sprite>sprites\spr_grav_particle</sprite>
@@ -75,6 +76,7 @@
       <object>objects\obj_btn</object>
       <object>objects\obj_btn_jump</object>
       <object>objects\obj_btn_map</object>
+      <object>objects\obj_btn_ship</object>
     </objects>
     <objects name="Managers">
       <object>objects\obj_manager</object>

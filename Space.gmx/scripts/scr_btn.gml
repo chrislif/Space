@@ -12,9 +12,11 @@ switch argument0 {
             manager.current_location = manager.selected_star
             scr_propagate_threat()
             manager.threat_propagated = true
+        } 
+        else {
+            manager.current_location = manager.selected_star
         }
         
-        manager.current_location = manager.selected_star
         manager.selected_star.selected = false
         manager.selected_star = noone
         
@@ -23,6 +25,9 @@ switch argument0 {
         manager.player.reload_time = manager.player.reload
         
         scr_load_star_arena(manager.current_location)
+        break
+    case "open_ship":
+    
         break
 }
 
