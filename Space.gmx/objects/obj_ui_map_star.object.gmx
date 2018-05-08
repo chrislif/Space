@@ -29,11 +29,12 @@
 number = 0
 
 connections = noone
+map = noone
 mouse_over = false
 selected = false
 image_speed = 0
 
-threat_level = round(random_range(1, 5))
+threat_level = 1
 threat_ui = instance_create(x, y, obj_threat_warning)
 </string>
           </argument>
@@ -144,12 +145,18 @@ else {
 if manager.current_location == noone {
     manager.selected_star = self
     selected = true
+    if map != noone {
+        instance_destroy(map)
+    }
 }
 else {
     star_connected = in_array(manager.current_location.connections, self)
     if  star_connected {
         manager.selected_star = self
         selected = true
+        if map != noone {
+            instance_destroy(map)
+        }
     }
 }
 

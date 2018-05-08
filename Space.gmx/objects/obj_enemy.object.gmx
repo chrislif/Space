@@ -47,7 +47,7 @@ enum state {
 }
 e_state = state.patrol
 aggro_range = 250  
-break_range = 500
+break_range = 700
 
 dest = noone
 dest_num = 1
@@ -87,6 +87,10 @@ room_center = instance_create(room_width/2, room_height/2, obj_point)
     scrap = instance_create(x, y, obj_scrap)
     scrap.speed = random_range(1,3)
     scrap.direction = random_range(0,360)
+}
+
+if has_route = true {
+    scr_destroy_route(route)
 }
 </string>
           </argument>

@@ -5,8 +5,8 @@ star_count = random_round(24, 36)
 star_x = 0
 star_y = 0
 
-rm_width = 1024
-rm_height = 768
+rm_width = 1600
+rm_height = 900
 
 x_border = 450
 y_border = 320

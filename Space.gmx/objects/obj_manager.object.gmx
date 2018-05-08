@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize Variables
+window_set_fullscreen(true)
+
 player = noone
 
 if room = rm_warp {
@@ -40,10 +42,9 @@ warping = false
 stars_created = false
 cycle = 0
 warp_ui_created = false
+threat_propagated = false
 
 global.star_map = scr_create_starmap()
-
-star_map[0].threat_level = 5
 
 current_location = noone
 selected_star = noone
@@ -163,6 +164,38 @@ if cycle == 0 and warping = true {
 if cycle &gt; 0 {
     cycle -= 1
 }
+
+if keyboard_check_pressed(vk_escape) {
+    game_end()
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if room = rm_arena {
+    spawner = instance_create(0, 0, obj_spawner)
+    spawner.manager = self
+    spawner.star = current_location
+}
+    
 </string>
           </argument>
         </arguments>

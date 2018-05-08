@@ -64,6 +64,8 @@ loc_marker = noone
     }
 }
 
+instance_destroy(close_btn)
+
 </string>
           </argument>
         </arguments>
@@ -91,10 +93,11 @@ loc_marker = noone
         for (i = 0; i &lt; array_length_1d(global.star_map); i += 1) {
             global.star_map[i].show = true
             global.star_map[i].manager = manager  
+            global.star_map[i].map = self
         }
     }
     
-    if manager.current_location != noone {
+    if manager.current_location != noone and loc_marker == noone{
         loc_marker = instance_create(manager.current_location.x, manager.current_location.y, obj_ui_map_player)
         loc_marker.show = true
     }

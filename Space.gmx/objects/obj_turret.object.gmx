@@ -37,6 +37,7 @@ hp = 5
 scrap_value = random_range(1, 3)
 
 e_state = noone
+has_route = false
 </string>
           </argument>
         </arguments>

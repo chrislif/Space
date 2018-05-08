@@ -9,86 +9,96 @@
     <sprites name="Animations">
       <sprite>sprites\anm_warp</sprite>
       <sprite>sprites\anm_warp_burst</sprite>
+      <sprite>sprites\dmg_player</sprite>
+      <sprite>sprites\spr_blt</sprite>
+      <sprite>sprites\spr_blt2</sprite>
     </sprites>
     <sprites name="Buttons">
-      <sprite>sprites\btn_map</sprite>
       <sprite>sprites\btn_jump</sprite>
+      <sprite>sprites\btn_map</sprite>
     </sprites>
-    <sprite>sprites\dmg_player</sprite>
-    <sprites name="Points">
+    <sprites name="Particles">
       <sprite>sprites\spr_grav_particle</sprite>
+      <sprite>sprites\spr_graviton</sprite>
       <sprite>sprites\spr_point</sprite>
+      <sprite>sprites\spr_scrap</sprite>
       <sprite>sprites\spr_star</sprite>
     </sprites>
-    <sprite>sprites\spr_blt</sprite>
-    <sprite>sprites\spr_blt2</sprite>
-    <sprite>sprites\spr_enemy</sprite>
-    <sprite>sprites\spr_graviton</sprite>
-    <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\spr_scrap</sprite>
-    <sprite>sprites\spr_turret_base</sprite>
-    <sprite>sprites\spr_turret_gun</sprite>
     <sprites name="UI">
-      <sprite>sprites\spr_ui_map</sprite>
-      <sprite>sprites\spri_ui_exit</sprite>
-      <sprite>sprites\spr_ui_map_star</sprite>
-      <sprite>sprites\spr_ui_map_player</sprite>
       <sprite>sprites\spr_threat_warning</sprite>
+      <sprite>sprites\spr_ui_map</sprite>
+      <sprite>sprites\spr_ui_map_player</sprite>
+      <sprite>sprites\spr_ui_map_star</sprite>
+      <sprite>sprites\spri_ui_exit</sprite>
+    </sprites>
+    <sprites name="Units">
+      <sprite>sprites\spr_enemy</sprite>
+      <sprite>sprites\spr_player</sprite>
+      <sprite>sprites\spr_turret_base</sprite>
+      <sprite>sprites\spr_turret_gun</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Functions">
-      <script>scripts\print.gml</script>
-      <script>scripts\random_sign.gml</script>
-      <script>scripts\random_round.gml</script>
       <script>scripts\array_insert.gml</script>
       <script>scripts\in_array.gml</script>
+      <script>scripts\print.gml</script>
+      <script>scripts\random_round.gml</script>
+      <script>scripts\random_sign.gml</script>
     </scripts>
-    <script>scripts\scr_btn.gml</script>
-    <script>scripts\scr_create_route.gml</script>
-    <script>scripts\scr_destroy_route.gml</script>
-    <script>scripts\scr_load_star_arena.gml</script>
-    <script>scripts\scr_shortest_rotation.gml</script>
-    <script>scripts\scr_simplify_angle.gml</script>
+    <scripts name="Standard">
+      <script>scripts\scr_btn.gml</script>
+      <script>scripts\scr_create_route.gml</script>
+      <script>scripts\scr_destroy_route.gml</script>
+      <script>scripts\scr_load_star_arena.gml</script>
+      <script>scripts\scr_shortest_rotation.gml</script>
+      <script>scripts\scr_simplify_angle.gml</script>
+      <script>scripts\scr_propagate_threat.gml</script>
+    </scripts>
     <scripts name="Star Map">
+      <script>scripts\scr_connect_group.gml</script>
       <script>scripts\scr_connect_stars.gml</script>
       <script>scripts\scr_create_starmap.gml</script>
       <script>scripts\scr_group_star_map.gml</script>
-      <script>scripts\scr_connect_group.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
     <objects name="Animations">
       <object>objects\obj_anm_warp</object>
       <object>objects\obj_anm_warp_burst</object>
+      <object>objects\obj_blt</object>
       <object>objects\obj_player_dmg</object>
     </objects>
     <objects name="Buttons">
       <object>objects\obj_btn</object>
-      <object>objects\obj_btn_map</object>
       <object>objects\obj_btn_jump</object>
+      <object>objects\obj_btn_map</object>
     </objects>
-    <object>objects\obj_blt</object>
-    <object>objects\obj_enemy</object>
-    <object>objects\obj_graviton</object>
-    <object>objects\obj_manager</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_scrap</object>
-    <object>objects\obj_turret</object>
-    <object>objects\obj_turret_gun</object>
+    <objects name="Managers">
+      <object>objects\obj_manager</object>
+      <object>objects\obj_spawner</object>
+    </objects>
     <objects name="Particles">
       <object>objects\obj_grav_particle</object>
+      <object>objects\obj_graviton</object>
       <object>objects\obj_point</object>
+      <object>objects\obj_scrap</object>
       <object>objects\obj_star</object>
     </objects>
     <objects name="UI">
+      <object>objects\obj_threat_warning</object>
       <object>objects\obj_ui_close</object>
       <object>objects\obj_ui_map</object>
-      <object>objects\obj_ui_map_star</object>
       <object>objects\obj_ui_map_player</object>
-      <object>objects\obj_threat_warning</object>
+      <object>objects\obj_ui_map_star</object>
+    </objects>
+    <objects name="Units">
+      <object>objects\obj_enemy</object>
+      <object>objects\obj_player</object>
+      <object>objects\obj_turret</object>
+      <object>objects\obj_turret_gun</object>
     </objects>
   </objects>
   <rooms name="rooms">

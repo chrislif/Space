@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_point</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>-3</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>number = 0
+show = true
 </string>
           </argument>
         </arguments>
@@ -48,8 +49,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self()
-draw_text(x, y - 16, string(number))
+            <string>if show = true {
+    draw_self()
+    draw_text(x, y - 16, string(number))
+}
 </string>
           </argument>
         </arguments>
