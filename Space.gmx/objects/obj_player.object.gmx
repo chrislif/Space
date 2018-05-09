@@ -54,7 +54,7 @@ warp_complete = false
 warping = false
 
 // Misc Variables
-scrap_amnt = 0
+scrap_amnt = 10
 dmg = 0
 dmg_max = 32
 

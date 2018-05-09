@@ -96,6 +96,7 @@
       <object>objects\obj_ui_map_player</object>
       <object>objects\obj_ui_map_star</object>
       <object>objects\obj_ui_ship</object>
+      <object>objects\obj_ui_ship_piece</object>
     </objects>
     <objects name="Units">
       <object>objects\obj_enemy</object>

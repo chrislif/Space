@@ -27,7 +27,77 @@
             <kind>1</kind>
             <string>close_btn = instance_create(x + sprite_width/2 - 12, y - sprite_height/2 + 12, obj_ui_close)
 close_btn.linked = self
-manager = noone
+manager = instance_nearest(0, 0, obj_manager)
+player = instance_nearest(x, y, obj_player)
+
+ui = noone
+
+core_piece = instance_create(x, y, obj_ui_ship_piece)
+core_piece.depth = -4
+ui[0] = core_piece
+core_piece.sprite_index = spr_player
+core_dmg_bar = instance_create(x, y, obj_ui_ship_piece)
+core_dmg_bar.depth = -4
+ui[1] = core_dmg_bar
+core_dmg_bar.sprite_index = dmg_player
+core_dmg_bar.image_speed = 0
+core_dmg_bar.image_index = player.dmg_bar.image_index
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if ui != noone {
+    for (i = 0; i &lt; array_length_1d(ui); i += 1) {
+        instance_destroy(ui[i])
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self()
+
+if manager != noone {
+    str = "SCRAP: " + string(manager.player.scrap_amnt)
+    draw_text(x - sprite_width/2 + 12, y - sprite_height/2 + 12, str)
+}   
 </string>
           </argument>
         </arguments>
